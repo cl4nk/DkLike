@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlateformManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlateformManager.cs" Line="8" Column="31" />
+      <File FileName="Assets\Scripts\PlateformManager.cs" Line="34" Column="3" />
+      <File FileName="Assets\Scripts\Player.cs" Line="6" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
