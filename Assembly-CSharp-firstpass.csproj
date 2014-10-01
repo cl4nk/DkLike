@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\RendererExtensions.cs" />
+     <Compile Include="Assets\Plugins\ScreenWrapBehaviour.cs" />
+     <Compile Include="Assets\Plugins\ScriptScrolling.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
