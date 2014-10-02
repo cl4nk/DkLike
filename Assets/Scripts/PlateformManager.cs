@@ -2,53 +2,56 @@
 using System.Collections.Generic;
 
 public class PlatformManager : MonoBehaviour {
-	
-	public Transform prefab;
-	public int numberOfObjects;
-	public float recycleOffset;
+
 	public Vector2 startPosition;
-	public Vector2 minSize, maxSize, minGap, maxGap;
-	public float minY, maxY;
-	
+
 	private Vector2 nextPosition;
-	private Queue<Transform> objectQueue;
-	
+	private GameObject[] objects;
+	private GameObject[] currentObjects;
+	private int lowestCurrentObject = 0, highestCurrentObject = 0, nbrCurrentObjects = 0;
+
 	void Start () {
-		objectQueue = new Queue<Transform>(numberOfObjects);
-		for(int i = 0; i < numberOfObjects; i++){
-			objectQueue.Enqueue((Transform)Instantiate(prefab));
-		}
-		nextPosition = startPosition;
-		for(int i = 0; i < numberOfObjects; i++){
-			Recycle();
-		}
+		bool lastObjectIsVisble = true;
+		while (lastObjectIsVisble) {
+			lastObjectIsVisble = CreateObstacle();
+				}
 	}
 	
 	void Update () {
-		if(objectQueue.Peek().localPosition.x + recycleOffset < Player.distanceTraveled){
-			Recycle();
+		if(currentObjects[lowestCurrentObject].renderer.isVisible){
+			CreateObstacle();
+		}
+		if(!currentObjects[highestCurrentObject].renderer.isVisible){
+			DestroyHighestObstacle();
+
 		}
 	}
-	
-	private void Recycle () {
 
-		Vector2 position = nextPosition;
-		position.x += scale.x * 0.5f;
-		position.y += scale.y * 0.5f;
-		
-		Transform o = objectQueue.Dequeue();
-		o.localPosition = position;
-		objectQueue.Enqueue(o);
-		
-		nextPosition += new Vector2(
-			Random.Range(minGap.x, maxGap.x) + scale.x,
-			Random.Range(minGap.y, maxGap.y));
-		
-		if(nextPosition.y < minY){
-			nextPosition.y = minY + maxGap.y;
+	private void DestroyHighestObstacle () {
+				if (currentObjects [highestCurrentObject] != null) {
+					Destroy(currentObjects [highestCurrentObject]);
+					nbrCurrentObjects --;
+					highestCurrentObject = (highestCurrentObject + 1) % currentObjects.Length;
+
+				}
 		}
-		else if(nextPosition.y > maxY){
-			nextPosition.y = maxY - maxGap.y;
+	private bool CreateObstacle () {
+
+		int enemyIndex = Random.Range(0, objects.Length);
+		int newIndex = (lowestCurrentObject + 1) % currentObjects.Length;
+
+		if (objects [enemyIndex] != null && currentObjects[newIndex] == null) {
+
+			GameObject newObstacle = objects [enemyIndex];
+			currentObjects[newIndex] = (GameObject) Instantiate(newObstacle, nextPosition, transform.rotation);
+
+			nextPosition.y += newObstacle.renderer.bounds.size.y;
+			nbrCurrentObjects ++;
+			lowestCurrentObject = newIndex;
+
+			return currentObjects[newIndex].renderer.isVisible;
 		}
+
+		return false;
 	}
 }
