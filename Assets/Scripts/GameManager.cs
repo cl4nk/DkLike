@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool showGameOver;
+	float lockedX = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -26,5 +27,11 @@ public class GameManager : MonoBehaviour {
 			// Now save the score as our new highscore
 			PlayerPrefs.SetInt("Highscore", highscore);
 		}
+	}
+
+	void LateUpdate() {
+		Vector3 mPosition = Camera.main.transform.position;
+		mPosition.x = lockedX;
+		Camera.main.transform.position = mPosition;
 	}
 }
