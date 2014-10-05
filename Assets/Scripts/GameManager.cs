@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool showGameOver;
-	float lockedX = 0.0f;
+	private static float lockedX = 0.0f;
 
 	// Use this for initialization
 	void Start () {

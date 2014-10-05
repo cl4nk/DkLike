@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tete : MonoBehaviour {
 
-	private Player player;
+	public Player player;
 
 	// Use this for initialization
 	void Start () {
