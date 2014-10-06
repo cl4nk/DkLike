@@ -3,7 +3,7 @@ using System.Collections;
 
 /// Title screen script
 
-public class MenuScript : MonoBehaviour{
+public class OptionsScript : MonoBehaviour{
 	private float hSliderValue = 0.0f;
 	void OnGUI(){
 		const int buttonWidth = 70;
