@@ -51,7 +51,7 @@ public class MenuScript : MonoBehaviour
 		// Draw a button to start the game
 		if(GUI.Button(buttonRect,"Start"))
 		{
-			Application.LoadLevel("Stage1");
+			Application.LoadLevel("Level");
 		}
 		if(GUI.Button(button2Rect,"Options"))
 		{
