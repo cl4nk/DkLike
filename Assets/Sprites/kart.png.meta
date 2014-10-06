@@ -6,7 +6,7 @@ TextureImporter:
     21300002: roue_gauche
     21300004: roue_droite
     21300006: barre_de_fer
-    21300008: bouton_haut
+    21300008: tete
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,40 +51,40 @@ TextureImporter:
     - name: roue_gauche
       rect:
         serializedVersion: 2
-        x: 67
-        y: 52
-        width: 433
-        height: 431
+        x: 273
+        y: 108
+        width: 474
+        height: 472
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: roue_droite
       rect:
         serializedVersion: 2
-        x: 1005
-        y: 50
-        width: 436
-        height: 437
+        x: 1213
+        y: 105
+        width: 474
+        height: 475
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: barre_de_fer
       rect:
         serializedVersion: 2
-        x: 372
-        y: 533
-        width: 981
-        height: 321
+        x: 342
+        y: 609
+        width: 1003
+        height: 343
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: bouton_haut
+    - name: tete
       rect:
         serializedVersion: 2
-        x: 1510
-        y: 697
-        width: 280
-        height: 303
+        x: 1439
+        y: 696
+        width: 287
+        height: 329
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

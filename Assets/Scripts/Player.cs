@@ -21,14 +21,6 @@ public class Player : MonoBehaviour {
 		}
 	
 	}
-
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		if (other.relativeVelocity.magnitude > 2) {
-			isDead = true;
-			Die();
-			}
-	}
 	
 	void Die()
 	{

@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 0651002e534dcc848b23dc292a6dfa66
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ficelles_punaises
+    21300002: ficelles_1
+    21300004: punaise_bleue
+    21300006: punaise_bleue_claire
+    21300008: punaise_verte
+    21300010: punaise_jaune
+    21300012: punaise_rouge
+    21300014: punaise_noire
+    21300016: ficelles_long_1
+    21300018: ficelles_long_2
+    21300020: ficelles_moyen
+    21300022: ficelles_courtes
+    21300024: ficelles_court
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ficelles_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 967
+        width: 1896
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_bleue
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 52
+        width: 146
+        height: 150
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_bleue_claire
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 55
+        width: 145
+        height: 146
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_verte
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 53
+        width: 146
+        height: 147
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_jaune
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 59
+        width: 146
+        height: 146
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_rouge
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 63
+        width: 145
+        height: 144
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: punaise_noire
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 65
+        width: 147
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ficelles_long_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 777
+        width: 1634
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ficelles_long_2
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 602
+        width: 1335
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ficelles_moyen
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 437
+        width: 1085
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ficelles_courtes
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 265
+        width: 742
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ficelles_court
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 90
+        width: 444
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
