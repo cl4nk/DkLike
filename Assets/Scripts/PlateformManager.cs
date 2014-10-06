@@ -11,13 +11,18 @@ public class PlatformManager : MonoBehaviour {
 	private int lowestCurrentObject = 0, highestCurrentObject = 0, nbrCurrentObjects = 0;
 
 	void Start () {
+		Time.timeScale = 0f;
 		bool lastObjectIsVisble = true;
 		while (lastObjectIsVisble) {
 			lastObjectIsVisble = CreateObstacle();
 				}
+		Time.timeScale = 1.0f;
 	}
 	
 	void Update () {
+
+
+
 		if(currentObjects[lowestCurrentObject].renderer.isVisible){
 			CreateObstacle();
 		}
