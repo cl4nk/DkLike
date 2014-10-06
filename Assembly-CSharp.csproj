@@ -52,7 +52,6 @@
      <Compile Include="Assets\Scripts\OptionsScript.cs" />
      <Compile Include="Assets\Scripts\PlateformManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\Tete.cs" />
   </ItemGroup>
   <ItemGroup>

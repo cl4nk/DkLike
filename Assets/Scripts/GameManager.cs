@@ -13,8 +13,12 @@ public class GameManager : MonoBehaviour {
 	private static float lockedX = 0.0f;
 	private bool isPaused = false;
 
+	public GUIText scoreGUIText;
+	public Player player;
+
 	// Use this for initialization
 	void Start () {
+		curScore = 0;
 		highscore = PlayerPrefs.GetInt("Highscore");
 	}
 	
@@ -26,7 +30,8 @@ public class GameManager : MonoBehaviour {
 		
 		else
 			Time.timeScale = 1.0f; // Le temps reprend
-
+		AddScore ((int) player.transform.position.y);
+		scoreGUIText.text = curScore.ToString();
 
 		// If the bird died and our current score is greater than our saved highscore
 		if (showGameOver) {
@@ -68,4 +73,12 @@ public class GameManager : MonoBehaviour {
 			
 		}
 	}
+
+	public void AddScore (int y)
+	{
+		y  = y > 0 ? y : -y;
+		if ( y > curScore)
+			curScore = y;
+	}
+
 }
