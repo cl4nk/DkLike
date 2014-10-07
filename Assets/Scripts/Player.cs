@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public bool isDead = false;
-	private GameManager manager;
+	public GameManager manager;
 
 
 	// Use this for initialization

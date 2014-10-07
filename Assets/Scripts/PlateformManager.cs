@@ -1,54 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlatformManager : MonoBehaviour {
+public class PlateformManager : MonoBehaviour {
 
 	public Vector3 startPosition;
 
 	private Vector3 nextPosition;
-	private GameObject[] objects;
+	public GameObject[] objects;
 	private GameObject[] currentObjects;
-	private int lowestCurrentObject = 0, highestCurrentObject = 0, nbrCurrentObjects = 0;
+	private int lowestCurrentObject = 0, highestCurrentObject = 0; 
+	private int nbrCurrentObjects = 0;
 
 	void Start () {
-		Time.timeScale = 0f;
+
+		currentObjects = new GameObject[10];
+
+		//Time.timeScale = 0f;
 		bool lastObjectIsVisble = true;
 		
 		//TODO recuperer position premier obstacle
+		GameObject firstPlateforme = GameObject.Find ("first_plateforme");
+		if (firstPlateforme != null)
+			startPosition.y = firstPlateforme.transform.position.y - (int) getHeight(firstPlateforme); 
 		
 		nextPosition = startPosition;
-		while (lastObjectIsVisble) {
-			lastObjectIsVisble = CreateObstacle();
+		while (lastObjectIsVisble && nbrCurrentObjects < 10) {
+			//lastObjectIsVisble = 
+				CreateObstacle();
 				}
 		Time.timeScale = 1.0f;
+
+		Debug.Log("Sorti de la boucle");
 	}
 	
 	void Update () {
+		if (nbrCurrentObjects > 0) {
+			if (objectIsVisible(currentObjects [lowestCurrentObject])) {
+								CreateObstacle ();
+						}
+			if (!objectIsVisible(currentObjects [highestCurrentObject])) {
+								DestroyHighestObstacle ();
 
-
-
-		if(currentObjects[lowestCurrentObject].renderer.isVisible){
-			CreateObstacle();
-		}
-		if(!currentObjects[highestCurrentObject].renderer.isVisible){
-			DestroyHighestObstacle();
-
-		}
+						}
+				}
 	}
 
 	private void DestroyHighestObstacle () {
-				if (currentObjects [highestCurrentObject] != null) {
+		if (currentObjects [highestCurrentObject] != null && nbrCurrentObjects > 0 ) {
 					Destroy(currentObjects [highestCurrentObject]);
 					nbrCurrentObjects --;
-					highestCurrentObject = (highestCurrentObject + 1) % currentObjects.Length;
+					highestCurrentObject = (highestCurrentObject + 1) % nbrCurrentObjects;
 
 				}
-		}
+	}
+
 	private bool CreateObstacle () {
 
 		int enemyIndex = Random.Range(0, objects.Length);
 		int reverted = Random.Range(0,2);
-		int newIndex = (lowestCurrentObject + 1) % currentObjects.Length;
+		int newIndex = (nbrCurrentObjects !=0) ? (lowestCurrentObject + 1) % nbrCurrentObjects : (lowestCurrentObject + 1) ;
 
 		if (objects [enemyIndex] != null && currentObjects[newIndex] == null) {
 
@@ -60,14 +70,48 @@ public class PlatformManager : MonoBehaviour {
 			} 
 			currentObjects[newIndex] = (GameObject) Instantiate(newObstacle, nextPosition, transform.rotation);
 
-			nextPosition.y += newObstacle.renderer.bounds.size.y;
+			nextPosition.y -= (int) getHeight(newObstacle);
 			nbrCurrentObjects ++;
 			lowestCurrentObject = newIndex;
 
-			return currentObjects[newIndex].renderer.isVisible;
+			Debug.Log("Creation obj");
+			return objectIsVisible(currentObjects[newIndex]);
 		}
 
 		return false;
 	}
+
+	private float getHeight (GameObject parent) {
+		Bounds bounds = getBounds (parent);
+		return bounds.size.y;
 }
 
+	private Bounds getBounds (GameObject parent) {
+		// First find a center for your bounds.
+		Vector3 center = Vector3.zero;
+		
+		foreach (Transform child in parent.transform)
+		{
+			center += child.gameObject.renderer.bounds.center;   
+		}
+		center /= parent.transform.childCount; //center is average center of children
+		
+		//Now you have a center, calculate the bounds by creating a zero sized 'Bounds', 
+		Bounds bounds = new Bounds(center,Vector3.zero); 
+		
+		foreach (Transform child in parent.transform)
+		{
+			bounds.Encapsulate(child.gameObject.renderer.bounds);   
+		}
+		return bounds;
+
+	}
+	private bool objectIsVisible (GameObject obj) {
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+		if (GeometryUtility.TestPlanesAABB (planes, getBounds (obj)))
+						return true;
+				else
+						return false;
+		}
+
+}

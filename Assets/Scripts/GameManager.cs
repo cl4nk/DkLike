@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 		
 		else
 			Time.timeScale = 1.0f; // Le temps reprend
-		AddScore ((int) player.transform.position.y);
+		AddScore ((int) player.gameObject.transform.position.y);
 		scoreGUIText.text = curScore.ToString();
 
 		// If the bird died and our current score is greater than our saved highscore
