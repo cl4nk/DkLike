@@ -10,7 +10,7 @@ using UnityEngine;
 ///
 /// See the result: http://pixelnest.io/tutorials/2d-game-unity/parallax-scrolling/-img/multidir_scrolling.gif
 /// </summary>
-public class ScrollingScript : MonoBehaviour
+public class ScriptScrolling : MonoBehaviour
 {
   /// <summary>
   /// Scrolling speed
