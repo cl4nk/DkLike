@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class PlatformManager : MonoBehaviour {
 
-	public Vector2 startPosition;
+	public Vector3 startPosition;
 
-	private Vector2 nextPosition;
+	private Vector3 nextPosition;
 	private GameObject[] objects;
 	private GameObject[] currentObjects;
 	private int lowestCurrentObject = 0, highestCurrentObject = 0, nbrCurrentObjects = 0;
@@ -13,6 +13,10 @@ public class PlatformManager : MonoBehaviour {
 	void Start () {
 		Time.timeScale = 0f;
 		bool lastObjectIsVisble = true;
+		
+		//TODO recuperer position premier obstacle
+		
+		nextPosition = startPosition;
 		while (lastObjectIsVisble) {
 			lastObjectIsVisble = CreateObstacle();
 				}
@@ -66,3 +70,4 @@ public class PlatformManager : MonoBehaviour {
 		return false;
 	}
 }
+
