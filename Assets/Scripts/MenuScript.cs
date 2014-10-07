@@ -48,6 +48,14 @@ public class MenuScript : MonoBehaviour
 			buttonHeight
 			);
 
+		Rect button6Rect = new Rect (
+			Screen.width / 2 - (7 * buttonWidth / 2),
+			(2 * Screen.height / 2) - (7 * buttonHeight / 3),
+			buttonWidth,
+			buttonHeight
+			);
+
+
 		Rect SoundButtonRect = new Rect (
 			  (Screen.width)  -(10* buttonWidth / 3),
 			( Screen.height / 3) - (9 * buttonHeight / 3),
@@ -87,6 +95,11 @@ public class MenuScript : MonoBehaviour
 		{
 			// voir explication facebook Application.OpenURL(string url);
 			Application.LoadLevel("Google +");
+		}
+		if(GUI.Button(buttonRect,"Tweeter"))
+		{
+			// voir explication facebook Application.OpenURL(string url);
+			Application.LoadLevel("Tweeter");
 		}
 
 	}
