@@ -43,11 +43,17 @@ public class PlatformManager : MonoBehaviour {
 	private bool CreateObstacle () {
 
 		int enemyIndex = Random.Range(0, objects.Length);
+		int reverted = Random.Range(0,2);
 		int newIndex = (lowestCurrentObject + 1) % currentObjects.Length;
 
 		if (objects [enemyIndex] != null && currentObjects[newIndex] == null) {
 
 			GameObject newObstacle = objects [enemyIndex];
+			if  (reverted == 1) {
+				 Vector3 newScale = newObstacle.transform.localScale;
+				 newScale.x *= -1;
+				 newObstacle.transform.localScale = newScale;
+			} 
 			currentObjects[newIndex] = (GameObject) Instantiate(newObstacle, nextPosition, transform.rotation);
 
 			nextPosition.y += newObstacle.renderer.bounds.size.y;
