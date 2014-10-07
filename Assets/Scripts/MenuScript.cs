@@ -56,7 +56,7 @@ public class MenuScript : MonoBehaviour
 			);
 		//Toogle du bouton son
 		toggleBool = GUI.Toggle (new Rect (800, 25, 100, 30), toggleBool, "Son");
-		toggleBool = GUI.Toggle (new Rect (900, 25, 100, 30), toggleBool, "Musique");
+		toggleBool = GUI.Toggle (new Rect (850, 25, 100, 30), toggleBool, "Musique");
 
 		
 		// Draw a button to start the game
