@@ -5,6 +5,7 @@ using System.Collections;
 
 public class MenuScript : MonoBehaviour
 {
+	private bool toggleBool = true;
 	void OnGUI()
 	{
 		const int buttonWidth = 84;
@@ -47,7 +48,17 @@ public class MenuScript : MonoBehaviour
 			buttonHeight
 			);
 
+		Rect SoundButtonRect = new Rect (
+			  (Screen.width)  -(10* buttonWidth / 3),
+			( Screen.height / 3) - (9 * buttonHeight / 3),
+			buttonWidth,
+			buttonHeight - 2
+			);
+		//Toogle du bouton son
+		toggleBool = GUI.Toggle (new Rect (800, 25, 100, 30), toggleBool, "Son");
+		toggleBool = GUI.Toggle (new Rect (900, 25, 100, 30), toggleBool, "Musique");
 
+		
 		// Draw a button to start the game
 		if(GUI.Button(buttonRect,"Start"))
 		{
@@ -61,6 +72,7 @@ public class MenuScript : MonoBehaviour
 		{
 			Application.LoadLevel ("Extras");
 		}
+
 		if (GUI.Button (button4Rect, "Facebook")) 
 		{
 			/* cause une erreur s'il n'y a pas d'url 
@@ -76,5 +88,6 @@ public class MenuScript : MonoBehaviour
 			// voir explication facebook Application.OpenURL(string url);
 			Application.LoadLevel("Google +");
 		}
+
 	}
 }
