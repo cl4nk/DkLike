@@ -18,6 +18,10 @@ public class Roues : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.relativeVelocity.magnitude > 2) {
+
+			//ligne qui le fait exploser
+			SpecialEffectsHelper.Instance.Explosionplayer(transform.position);
+
 			player.isDead = true;
 		}
 	}

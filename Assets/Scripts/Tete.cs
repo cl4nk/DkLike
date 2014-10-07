@@ -17,6 +17,9 @@ public class Tete : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-			player.isDead = true;
+		//ligne qui le fait exploser
+		SpecialEffectsHelper.Instance.Explosionplayer(transform.position);
+
+		player.isDead = true;
 	}
 }
