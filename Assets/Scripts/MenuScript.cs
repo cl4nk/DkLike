@@ -95,6 +95,5 @@ public class MenuScript : MonoBehaviour
 		{
 			Application.LoadLevel("Twitter");
 		}
-
 	}
 }
