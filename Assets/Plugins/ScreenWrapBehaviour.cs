@@ -229,27 +229,29 @@ public class ScreenWrapBehaviour : MonoBehaviour
 	
 	void SwapShips()
 	{
-				// When the main ship is off screen we want to teleport it to
-				// the position of the ghost that is currently on screen.
-				// A ghost is on screen if its position is
-				// between -screenWidth and +screenWidth along the X axis
-				// and
-				// between -screenHeight and +screenHeight along the Y axis,
-				// so we'll look for that.
+		// When the main ship is off screen we want to teleport it to
+		// the position of the ghost that is currently on screen.
+		// A ghost is on screen if its position is
+		// between -screenWidth and +screenWidth along the X axis
+		// and
+		// between -screenHeight and +screenHeight along the Y axis,
+		// so we'll look for that.
 		
-				foreach (var ghost in ghosts) {
-						if (ghost.position.x < screenWidth && ghost.position.x > -screenWidth &&
-								ghost.position.y < screenHeight && ghost.position.y > -screenHeight) {
-								transform.position = ghost.position;
+		foreach(var ghost in ghosts)
+		{
+			if (ghost.position.x < screenWidth && ghost.position.x > -screenWidth &&
+			    ghost.position.y < screenHeight && ghost.position.y > -screenHeight)
+			{
+				transform.position = ghost.position;
 				
-								// We found the one we needed,
-								// no need to iterate through the loop anymore
-								// so we break
-								break;
-						}
-				}
-		
-				// Reposition the ghost ships because we changed the player ship position
-				PositionGhostShips ();
+				// We found the one we needed,
+				// no need to iterate through the loop anymore
+				// so we break
+				break;
+			}
 		}
+		
+		// Reposition the ghost ships because we changed the player ship position
+		PositionGhostShips();
+	}
 }
