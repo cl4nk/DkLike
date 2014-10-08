@@ -17,49 +17,49 @@ public class MenuScript : MonoBehaviour
 		// Center in X, 2/3 of the height in Y
 		Rect buttonRect = new Rect(
 			Screen.width / 2 - (buttonWidth / 2),
-			(2 * Screen.height / 2) - (14 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			(2 * Screen.height / 2) - (19 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight -5
 			);
 
 		Rect button2Rect = new Rect (
 			Screen.width / 2 - (buttonWidth / 2),
-			(2 * Screen.height / 2) - (10 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			(2 * Screen.height / 2) - (15 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight - 5
 			);
 
 		Rect button3Rect = new Rect (
 			Screen.width / 2 - (buttonWidth / 2),
-			(2 * Screen.height / 2) - (6 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			(2 * Screen.height / 2) - (11 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight - 5
 			);
 
 		Rect button4Rect = new Rect (
-			 Screen.width / 2 - (4 * buttonWidth / 2),
-			(2 * Screen.height / 2) - (6 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			 Screen.width / 2 - (-2 * buttonWidth / 2),
+			(2 * Screen.height / 2) - (5 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight - 5
 			);
 
 		Rect button5Rect = new Rect (
-			Screen.width / 2 - (7 * buttonWidth / 2),
-			(2 * Screen.height / 2) - (6 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			Screen.width / 2 - (buttonWidth / 2),
+			(2 * Screen.height / 2) - (5 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight - 5
 			);
 
 		Rect button6Rect = new Rect (
-			Screen.width / 2 - (10 * buttonWidth / 2),
-			(2 * Screen.height / 2) - (6 * buttonHeight / 3),
-			buttonWidth,
-			buttonHeight
+			Screen.width / 2 - (4 * buttonWidth / 2),
+			(2 * Screen.height / 2) - (5 * buttonHeight / 3),
+			buttonWidth - 5,
+			buttonHeight - 5
 			);
 
 		//Toogle du bouton son
-		toggleBool = GUI.Toggle (new Rect (700, 25, 100, 30), toggleBool, "Son");
-		toggleBool2 = GUI.Toggle (new Rect (760, 25, 100, 30), toggleBool2, "Musique");
+		toggleBool = GUI.Toggle (new Rect (320, 25, 100, 30), toggleBool, "Son");
+		toggleBool2 = GUI.Toggle (new Rect (50, 25, 100, 30), toggleBool2, "Musique");
 
 		
 		// Draw a button to start the game
