@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Users\Nicolas\Documents\TappyPlane-master\Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\MenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlateformManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\ScriptScrolling.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\CameraController.cs" Line="21" Column="2" />
+      <File FileName="..\..\Users\Nicolas\Documents\TappyPlane-master\Assets\Scripts\Player.cs" Line="19" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -17,8 +17,9 @@ public class PlateformManager : MonoBehaviour {
 
 		GameObject firstPlateforme = GameObject.Find ("first_plateforme_game");
 		if (firstPlateforme != null) {
-						startPosition.y = firstPlateforme.transform.position.y - (int)getHeight (firstPlateforme);
+			startPosition.y = firstPlateforme.transform.position.y - (int)getHeight (firstPlateforme);
 			startPosition.x = firstPlateforme.transform.position.x;
+			currentObjects.Add(firstPlateforme);
 				}
 		
 		nextPosition = startPosition;

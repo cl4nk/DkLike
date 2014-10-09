@@ -2,26 +2,35 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
-	public GameObject player;
+	private GameObject player;
 	private float distance;
 
-	private float minDistance;
-	private float maxDistance;
-	public float rangeDistance = 1f;
-	public float tempDistance = 0.1f;
+	private int i = 0;
+
+	private float lockedX ;
+
 	// Use this for initialization
 	void Start () {
-		distance =  Mathf.Abs(player.transform.position.y - transform.position.y);
+		player = GameObject.Find ("roue_droite");
+		if (player == null)
+						Debug.Log ("pas de player");
+		float yPlayer = player.transform.position.y;
+		float yCamera = transform.position.y;
+		distance =  yCamera - yPlayer;
+		lockedX = transform.position.x;
 
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-			transform.position = new Vector3 (transform.position.x, player.transform.position.y - distance,  transform.position.z);
+		Vector3 mPosition = transform.position;
+		mPosition.x = lockedX;
+		mPosition.y = distance + player.gameObject.transform.position.y;
+		transform.position = mPosition;
+
+		Debug.Log ("Player pos y :  " + player.gameObject.transform.position.y.ToString () +"    " + i.ToString());
+		i++;
 	}
 
-	bool isBetween (float a, float min, float max) {
-		return (Mathf.Abs(a) > min && Mathf.Abs(a) < max);
-		}
 }
