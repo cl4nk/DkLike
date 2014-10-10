@@ -16,7 +16,7 @@ public class Roues : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.relativeVelocity.magnitude > 2) {
+		if (other.relativeVelocity.magnitude > 3) {
 
 			//ligne qui le fait exploser
 			SpecialEffectsHelper.Instance.Explosionplayer(transform.position);
