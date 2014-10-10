@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 
 	public GUIText scoreGUIText;
 	public GameObject player;
+	public Texture image;
 
 	// Use this for initialization
 	void Start () {
@@ -25,13 +26,15 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-		/*if(isPaused)
+	void Update () 
+	{
+		/*
+		if(isPaused)
 			Time.timeScale = 0f; // Le temps s'arrete
 		
 		else
 			Time.timeScale = 1.0f; // Le temps reprend*/
+
 		//AddScore ((int) player.transform.position.y);
 		//scoreGUIText.text = curScore.ToString();
 
