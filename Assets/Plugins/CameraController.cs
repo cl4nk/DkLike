@@ -5,13 +5,11 @@ public class CameraController : MonoBehaviour {
 	private GameObject player;
 	private float distance;
 
-	private int i = 0;
-
 	private float lockedX ;
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find ("roue_droite");
+		player = GameObject.Find("bouton_haut");
 		if (player == null)
 						Debug.Log ("pas de player");
 		float yPlayer = player.transform.position.y;
@@ -29,8 +27,6 @@ public class CameraController : MonoBehaviour {
 		mPosition.y = distance + player.gameObject.transform.position.y;
 		transform.position = mPosition;
 
-		Debug.Log ("Player pos y :  " + player.gameObject.transform.position.y.ToString () +"    " + i.ToString());
-		i++;
 	}
 
 }

@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Users\Nicolas\Documents\TappyPlane-master\Assets\Scripts\Player.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="..\..\Users\Nicolas\Documents\TappyPlane-master\Assets\Scripts\Player.cs" Line="19" Column="48" />
+      <File FileName="Assets\Plugins\CameraController.cs" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Roues.cs" Line="28" Column="1" />
+      <File FileName="Assets\Scripts\Tete.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="38" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -20,7 +20,7 @@ public class Roues : MonoBehaviour {
 
 			//ligne qui le fait exploser
 			SpecialEffectsHelper.Instance.Explosionplayer(transform.position);
-
+			Destroy (this.gameObject);
 			player.isDead = true;
 		}
 	}
