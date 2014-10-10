@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
+	[HideInInspector]
 	public bool isDead = false;
 	public GameManager manager;
 

@@ -5,7 +5,7 @@ public class PlateformManager : MonoBehaviour
 {
 
 		private Vector3 startPosition ;
-		public Vector3 gap;
+		public float gap = 1f;
 		private Vector3 nextPosition ;
 		public GameObject[] objects;
 		private List<GameObject> currentObjects = new List<GameObject> ();
@@ -18,7 +18,7 @@ public class PlateformManager : MonoBehaviour
 
 				GameObject firstPlateforme = GameObject.Find ("first_plateforme_game");
 				if (firstPlateforme != null) {
-						startPosition.y = firstPlateforme.transform.position.y - (int)getHeight (firstPlateforme);
+						startPosition.y = firstPlateforme.transform.position.y - (getHeight (firstPlateforme) / 2f);
 						startPosition.x = firstPlateforme.transform.position.x;
 				}
 		
@@ -33,9 +33,9 @@ public class PlateformManager : MonoBehaviour
 	
 		void Update ()
 		{
-		if (currentObjects.Count > 0) {
-				if (objectIsVisible (currentObjects [currentObjects.Count - 1]))
-						CreateObstacle ();
+				if (currentObjects.Count > 0) {
+						if (objectIsVisible (currentObjects [currentObjects.Count - 1]))
+								CreateObstacle ();
 				
 						if (!objectIsVisible (currentObjects [0])) 
 								DestroyHighestObstacle ();
@@ -60,17 +60,24 @@ public class PlateformManager : MonoBehaviour
 				if (objects [enemyIndex] != null) {
 
 						GameObject newObstacle = objects [enemyIndex];
+
+						//Unity bug de ce coté.. impossible d'inverser le prefab
 						/*if  (reverted == 1) {
-				 Vector3 newScale = newObstacle.transform.localScale;
-				 newScale.x *= -1;
-				 newObstacle.transform.localScale = newScale;
-			} */
-						currentObjects.Add ((GameObject)Instantiate (newObstacle, nextPosition, transform.rotation));
+				 		Vector3 newScale = newObstacle.transform.localScale;
+				 		newScale.x *= -1;
+				 		newObstacle.transform.localScale = newScale;
+						} */
+						
+						nextPosition.y -= getHeight (newObstacle) / 2f;
+						
+						newObstacle.transform.position = nextPosition;
+						
+						currentObjects.Add ((GameObject)Instantiate (newObstacle));
 
-						nextPosition.y -= (int)getHeight (newObstacle);
+						nextPosition.y -= getHeight (newObstacle) / 2f ;
 
 
-						Debug.Log ("Creation obj");
+						Debug.Log ("Creation obj numéro "+ enemyIndex.ToString());
 						return objectIsVisible (currentObjects [currentObjects.Count - 1]);
 				}
 				if (objects [enemyIndex] == null) 

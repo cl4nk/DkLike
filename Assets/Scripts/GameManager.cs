@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
 
 
 	public GUIText scoreGUIText;
-	public GameObject player;
 	public Texture image;
 
 	// Use this for initialization
