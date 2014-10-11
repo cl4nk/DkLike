@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class MenuPause : MonoBehaviour {
 
 	private bool isPaused = false; 
-	public Texture2D img;
+	public Texture2D texture = null;
 	
 	void Update () 
 	{
