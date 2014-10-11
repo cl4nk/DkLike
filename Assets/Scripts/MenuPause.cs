@@ -8,12 +8,14 @@ public class MenuPause : MonoBehaviour {
 
 	private bool isPaused = false; 
 	public Texture2D texture = null;
-	
+
+	// Attache ce script à l'objet
+	void OnMouseDown()
+	{
+		isPaused = !isPaused;
+	}
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
-			isPaused = !isPaused;
-
 
 		if(isPaused)
 			Time.timeScale = 0f; // Le temps s'arrete
@@ -35,7 +37,7 @@ public class MenuPause : MonoBehaviour {
 				isPaused = false;
 			}
 
-			// Si le bouton est présser alors on ferme completement le jeu ou charge la scene "Menu Principal
+			// Si le bouton est présse alors on ferme completement le jeu ou charge la scene "Menu Principal
 			// Dans le cas du bouton quitter il faut augmenter sa postion Y pour qu'il soit plus bas
 			if(GUI.Button(new Rect(Screen.width / 2 - 40, Screen.height / 2 + 40, 80, 40), "menu"))
 			{
