@@ -68,16 +68,16 @@ public class PlateformManager : MonoBehaviour
 				 		newObstacle.transform.localScale = newScale;
 						} */
 						
-						nextPosition.y -= getHeight (newObstacle) / 2f;
+						nextPosition.y -= getHeight (newObstacle )/2f;
 						
 						newObstacle.transform.position = nextPosition;
 						
 						currentObjects.Add ((GameObject)Instantiate (newObstacle));
 
-						nextPosition.y -= getHeight (newObstacle) / 2f ;
+						nextPosition.y -= getHeight (newObstacle) / 2f;
 
 
-						Debug.Log ("Creation obj numéro "+ enemyIndex.ToString());
+						Debug.Log ("Creation obj numéro " + enemyIndex.ToString ());
 						return objectIsVisible (currentObjects [currentObjects.Count - 1]);
 				}
 				if (objects [enemyIndex] == null) 
@@ -86,10 +86,28 @@ public class PlateformManager : MonoBehaviour
 				Debug.Log ("Pas rentré dans le if");
 				return false;
 		}
-
+	
 		private float getHeight (GameObject parent)
 		{
-				return getBounds (parent).size.y;
+				float top = -9999f, bottom = 9999f, hieght;
+				Transform transTop = null, transBottom = null;
+		
+				foreach (Transform child in parent.transform) {
+						if (child.position.y > top) {
+								top = child.position.y;
+								transTop = child;
+						}
+						if (child.position.y < bottom) {
+								bottom = child.position.y;
+								transBottom = child;
+						}
+				}
+
+				top = top + (transTop.gameObject.renderer.bounds.size.y / 2f);
+				bottom = bottom - (transBottom.gameObject.renderer.bounds.size.y / 2f); 
+
+				return Mathf.Abs(top - bottom);
+
 		}
 
 		private Bounds getBounds (GameObject parent)
@@ -109,7 +127,7 @@ public class PlateformManager : MonoBehaviour
 						bounds.Encapsulate (child.gameObject.renderer.bounds);   
 				}
 				return bounds;
-
+		
 		}
 
 		private bool objectIsVisible (GameObject obj)
