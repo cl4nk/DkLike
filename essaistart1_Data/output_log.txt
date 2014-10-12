@@ -12,7 +12,7 @@ Platform assembly: C:\Users\Ron\Documents\GitHub\DkLike\essaistart1_Data\Managed
 Loading C:\Users\Ron\Documents\GitHub\DkLike\essaistart1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Ron\Documents\GitHub\DkLike\essaistart1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Ron\Documents\GitHub\DkLike\essaistart1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.071 seconds
+- Completed reload, in  0.066 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -23,4 +23,10 @@ The referenced script on this Behaviour is missing!
 The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1783)
+
+UnloadTime: 0.390002 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 89.
+Total: 0.664970 ms (FindLiveObjects: 0.008125 ms CreateObjectMapping: 0.005986 ms MarkObjects: 0.059868 ms  DeleteObjects: 0.018388 ms)
 
