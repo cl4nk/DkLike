@@ -10,7 +10,7 @@ public class PlateformManager : MonoBehaviour
 		public GameObject[] objects;
 		public GameObject[] bigObjects;
 		public GameObject[] smallObjects;
-		public GameObject[] mediumObjects;
+		public GameObject[] mediumsObjects;
 		private List<GameObject> currentObjects = new List<GameObject> ();
 
 		void Start ()
