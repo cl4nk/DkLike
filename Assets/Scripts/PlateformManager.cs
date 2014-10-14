@@ -8,6 +8,9 @@ public class PlateformManager : MonoBehaviour
 		public float gap = 1f;
 		private Vector3 nextPosition ;
 		public GameObject[] objects;
+		public GameObject[] bigObjects;
+		public GameObject[] smallObjects;
+		public GameObject[] mediumObjects;
 		private List<GameObject> currentObjects = new List<GameObject> ();
 
 		void Start ()
