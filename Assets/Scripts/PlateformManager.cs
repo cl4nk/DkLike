@@ -9,8 +9,11 @@ public class PlateformManager : MonoBehaviour
 		private Vector3 nextPosition ;
 		public GameObject[] objects;
 		public GameObject[] bigObjects;
+		public float bigMargin;
 		public GameObject[] smallObjects;
+		public float smallMargin;
 		public GameObject[] mediumsObjects;
+		public float mediumMargin;
 		private List<GameObject> currentObjects = new List<GameObject> ();
 
 		void Start ()
@@ -56,39 +59,98 @@ public class PlateformManager : MonoBehaviour
 
 		private bool CreateObstacle ()
 		{
-
-				int enemyIndex = Random.Range (0, objects.Length);
-				//int reverted = Random.Range(0,2);
-
-				if (objects [enemyIndex] != null) {
-
-						GameObject newObstacle = objects [enemyIndex];
-
-						//Unity bug de ce coté.. impossible d'inverser le prefab
-						/*if  (reverted == 1) {
-				 		Vector3 newScale = newObstacle.transform.localScale;
-				 		newScale.x *= -1;
-				 		newObstacle.transform.localScale = newScale;
-						} */
-						
-						nextPosition.y -= getHeight (newObstacle )/2f;
-						
-						newObstacle.transform.position = nextPosition;
-						
-						currentObjects.Add ((GameObject)Instantiate (newObstacle));
-
-						nextPosition.y -= getHeight (newObstacle) / 2f;
-
-
-						Debug.Log ("Creation obj numéro " + enemyIndex.ToString ());
-						return objectIsVisible (currentObjects [currentObjects.Count - 1]);
-				}
-				if (objects [enemyIndex] == null) 
-						Debug.Log ("Mauvais index");
-
-				Debug.Log ("Pas rentré dans le if");
-				return false;
+				int sizeChoice = Random.Range (0, 10);
+				
+				if (sizeChoice > 3)
+						return CreateSmallObstacle ();
+				else if (sizeChoice == 0)
+						return CreateMediumObstacle ();
+				else 
+						return CreateBigObstacle ();
+				
 		}
+
+	private bool CreateBigObstacle ()
+	{
+		int enemyIndex = Random.Range (0, bigObjects.Length);
+		
+		if (bigObjects [enemyIndex] != null) {
+			
+			GameObject newObstacle = bigObjects [enemyIndex];
+
+			nextPosition.y -= bigMargin / 2;
+
+			Vector3 currentPos = newObstacle.transform.position;
+			currentPos.y = nextPosition.y;
+			newObstacle.transform.position = currentPos;
+			
+			currentObjects.Add ((GameObject)Instantiate (newObstacle));
+			
+			nextPosition.y -= gap + (bigMargin / 2f);
+			
+
+			return objectIsVisible (currentObjects [currentObjects.Count - 1]);
+		}
+		if (bigObjects [enemyIndex] == null) 
+			Debug.Log ("Mauvais index");
+		
+		Debug.Log ("Pas rentré dans le if");
+		return false;
+	}
+
+	private bool CreateSmallObstacle ()
+	{
+		int enemyIndex = Random.Range (0, smallObjects.Length);
+		
+		if (smallObjects [enemyIndex] != null) {
+			
+			GameObject newObstacle = smallObjects [enemyIndex];
+			
+			nextPosition.y -= smallMargin / 2;
+			
+			Vector3 currentPos = newObstacle.transform.position;
+			currentPos.y = nextPosition.y;
+			newObstacle.transform.position = currentPos;
+			
+			currentObjects.Add ((GameObject)Instantiate (newObstacle));
+			
+			nextPosition.y -= gap + (smallMargin / 2f);
+
+			return objectIsVisible (currentObjects [currentObjects.Count - 1]);
+		}
+		if (smallObjects [enemyIndex] == null) 
+			Debug.Log ("Mauvais index");
+		
+		Debug.Log ("Pas rentré dans le if");
+		return false;
+	}
+
+	private bool CreateMediumObstacle ()
+	{
+		int enemyIndex = Random.Range (0, mediumsObjects.Length);
+		
+		if (mediumsObjects [enemyIndex] != null) {
+			
+			GameObject newObstacle = mediumsObjects [enemyIndex];
+			
+			nextPosition.y -= mediumMargin / 2;
+			
+			Vector3 currentPos = newObstacle.transform.position;
+			currentPos.y = nextPosition.y;
+			newObstacle.transform.position = currentPos;
+			
+			currentObjects.Add ((GameObject)Instantiate (newObstacle));
+			
+			nextPosition.y -= gap + (mediumMargin / 2f);
+
+			return objectIsVisible (currentObjects [currentObjects.Count - 1]);
+		}
+		if (mediumsObjects [enemyIndex] == null) 
+			Debug.Log ("Mauvais index");
+		
+		Debug.Log ("Pas rentré dans le if");
+		return false;
+	}
 	
 		private float getHeight (GameObject parent)
 		{
