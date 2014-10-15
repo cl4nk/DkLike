@@ -9,24 +9,34 @@ public class GameManager : MonoBehaviour {
 	private int highscore;
 	
 	[HideInInspector]
-	public bool showGameOver;
-
+	public bool showGameOver = false;
 	private bool isPaused = false;
-
-
+	
 	public GUIText scoreGUIText;
 	public Texture image;
+
+	private Gyroscope gyo1;
+	private bool gyoBool;
 
 	// Use this for initialization
 	void Start () {
 		curScore = 0;
 		highscore = PlayerPrefs.GetInt("Highscore");
 
+		gyoBool = SystemInfo.supportsGyroscope;
+		
+		if( gyoBool ) {
+			gyo1=Input.gyro;
+			gyo1.enabled = true;
+		}
+		Physics.gravity = gyo1.gravity;
+		Screen.orientation = ScreenOrientation.Portrait;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		Physics.gravity = gyo1.gravity;
 		/*
 		if(isPaused)
 			Time.timeScale = 0f; // Le temps s'arrete
