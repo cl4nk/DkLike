@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BoutonRetour.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="33" Column="51" />
+      <File FileName="Assets\Scripts\MenuScript.cs" Line="19" Column="1" />
+      <File FileName="Assets\Scripts\BoutonRetour.cs" Line="6" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

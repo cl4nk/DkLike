@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BoutonExtras.cs" />
      <Compile Include="Assets\Scripts\BoutonOption.cs" />
+     <Compile Include="Assets\Scripts\BoutonRetour.cs" />
      <Compile Include="Assets\Scripts\BoutonStart.cs" />
      <Compile Include="Assets\Scripts\FacebookScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
