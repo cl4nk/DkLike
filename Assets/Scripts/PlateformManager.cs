@@ -12,6 +12,8 @@ public class PlateformManager : MonoBehaviour
 		public float bigMargin;
 		public GameObject[] smallObjects;
 		public float smallMargin;
+	public GameObject[] verySmallObjects;
+	public float verySmallMargin;
 		public GameObject[] mediumsObjects;
 		public float mediumMargin;
 		private List<GameObject> currentObjects = new List<GameObject> ();
@@ -119,6 +121,33 @@ public class PlateformManager : MonoBehaviour
 			return objectIsVisible (currentObjects [currentObjects.Count - 1]);
 		}
 		if (smallObjects [enemyIndex] == null) 
+			Debug.Log ("Mauvais index");
+		
+		Debug.Log ("Pas rentré dans le if");
+		return false;
+	}
+
+	private bool CreateVerySmallObstacle ()
+	{
+		int enemyIndex = Random.Range (0, verySmallObjects.Length);
+		
+		if (verySmallObjects [enemyIndex] != null) {
+			
+			GameObject newObstacle = verySmallObjects [enemyIndex];
+			
+			nextPosition.y -= verySmallMargin / 2;
+			
+			Vector3 currentPos = newObstacle.transform.position;
+			currentPos.y = nextPosition.y;
+			newObstacle.transform.position = currentPos;
+			
+			currentObjects.Add ((GameObject)Instantiate (newObstacle));
+			
+			nextPosition.y -= gap + (verySmallMargin / 2f);
+			
+			return objectIsVisible (currentObjects [currentObjects.Count - 1]);
+		}
+		if (verySmallObjects [enemyIndex] == null) 
 			Debug.Log ("Mauvais index");
 		
 		Debug.Log ("Pas rentré dans le if");
