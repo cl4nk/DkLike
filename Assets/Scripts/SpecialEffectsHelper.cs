@@ -18,8 +18,9 @@ public class SpecialEffectsHelper : MonoBehaviour
 	}
 
 	public void Explosionplayer(Vector3 position)
-	{
-		// BOUM!!!!!!!!!
+	{	
+
+		// Explosion pas initialisé
 		instantiate(Explosion, position);
 
 	}

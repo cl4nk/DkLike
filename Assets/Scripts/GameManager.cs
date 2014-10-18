@@ -23,20 +23,24 @@ public class GameManager : MonoBehaviour {
 		curScore = 0;
 		highscore = PlayerPrefs.GetInt("Highscore");
 
-		gyoBool = SystemInfo.supportsGyroscope;
+		/*gyoBool = SystemInfo.supportsGyroscope;
 		
 		if( gyoBool ) {
 			gyo1=Input.gyro;
 			gyo1.enabled = true;
 		}
 		Physics.gravity = gyo1.gravity;
-		Screen.orientation = ScreenOrientation.Portrait;
+		Screen.orientation = ScreenOrientation.Portrait;*/
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Physics.gravity = gyo1.gravity;
+
+
+		//Physics.gravity = gyo1.gravity;
+
+
 		/*
 		if(isPaused)
 			Time.timeScale = 0f; // Le temps s'arrete

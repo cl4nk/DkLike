@@ -13,7 +13,7 @@ public class PlateformManager : MonoBehaviour
 		public GameObject[] smallObjects;
 		public float smallMargin;
 	public GameObject[] verySmallObjects;
-	public float verySmallMargin;
+	public float verySmallMargin = 2.6f;
 		public GameObject[] mediumsObjects;
 		public float mediumMargin;
 		private List<GameObject> currentObjects = new List<GameObject> ();

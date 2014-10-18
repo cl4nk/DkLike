@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlateformManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SpecialEffectsHelper.cs">
     <Files>
+      <File FileName="Assets\Plugins\ScreenWrapBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlateformManager.cs" Line="236" Column="2" />
-      <File FileName="Assets\Scripts\MenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoutonRetour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="41" Column="5" />
+      <File FileName="Assets\Scripts\Roues.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\SpecialEffectsHelper.cs" Line="44" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
