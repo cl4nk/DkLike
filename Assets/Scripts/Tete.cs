@@ -17,9 +17,11 @@ public class Tete : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
+		gameObject.SetActive(false);
 		//ligne qui le fait exploser
 		Explosion_tete.Instance.Explosion(transform.position);
 
 		player.isDead = true;
+		Destroy (this);
 	}
 }

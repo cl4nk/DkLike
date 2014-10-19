@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour {
 	{	
 		//Faire le skin avant de décommenter cette ligne
 		//GUI.skin = skin;
-		GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
+		//GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
 		
 		if (showGameOver) {
 			//define the screen space for the game over window

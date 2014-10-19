@@ -11,7 +11,7 @@ public class PlateformManager : MonoBehaviour
 		public GameObject[] bigObjects;
 		public float bigMargin;
 		public GameObject[] smallObjects;
-		public float smallMargin;
+		public float smallMargin ;
 	public GameObject[] verySmallObjects;
 	public float verySmallMargin = 2.6f;
 		public GameObject[] mediumsObjects;
@@ -63,12 +63,14 @@ public class PlateformManager : MonoBehaviour
 		{
 				int sizeChoice = Random.Range (0, 10);
 				
-				if (sizeChoice > 3)
-						return CreateSmallObstacle ();
-				else if (sizeChoice == 0)
-						return CreateMediumObstacle ();
+				if 		(sizeChoice > 5)
+					return CreateVerySmallObstacle ();
+				else if (sizeChoice > 3)
+					return CreateSmallObstacle ();
+				else if (sizeChoice ==0)
+					return CreateBigObstacle ();
 				else 
-						return CreateBigObstacle ();
+					return CreateMediumObstacle()
 				
 		}
 
