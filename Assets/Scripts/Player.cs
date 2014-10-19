@@ -24,6 +24,8 @@ public class Player : MonoBehaviour {
 	
 	void Die()
 	{
+		isDead = true;
+		//Stop the movement of the map
 		manager.showGameOver = true;
 
 	}

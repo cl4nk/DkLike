@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	private bool isPaused = false;
 	
 	public GUIText scoreGUIText;
+	public GUISkin skin;
 	public Texture image;
 
 	private Gyroscope gyo1;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour {
 
 		/*
 		if(isPaused)
-			Time.timeScale = 0f; // Le temps s'arrete
+			Time.timeScale = 0f; // Le temps s'arrete	
 		
 		else
 			Time.timeScale = 1.0f; // Le temps reprend*/
@@ -65,26 +66,29 @@ public class GameManager : MonoBehaviour {
 
 
 	void OnGUI ()
-	{
-		if(isPaused)
-		{
-			
-			// Si le bouton est présser alors isPaused devient faux donc le jeu reprend.
-			if(GUI.Button(new Rect(Screen.width / 2 - 40, Screen.height / 2 - 20, 80, 40), "Continuer"))
-			{
-				isPaused = false;
-			}
-			
-			// Si le bouton est présser alors on ferme completement le jeu ou charge la scene "Menu Principal
-			// Dans le cas du bouton quitter il faut augmenter sa postion Y pour qu'il soit plus bas
-			if(GUI.Button(new Rect(Screen.width / 2 - 40, Screen.height / 2 + 40, 80, 40), "Quitter"))
-			{
-				// Application.Quit(); 
-				Application.LoadLevel("menudujeu"); 
-				
-			}
-			
-		}
+	{	
+		//Faire le skin avant de décommenter cette ligne
+		//GUI.skin = skin;
+
+		//GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString ());
+		//Rect currentGameOver = 
+		/*
+		 *GUI.Box(currentGameOver, "Game Over", skin.GetStyle("Game Over"));
+		 *
+		 *Draw our current score within the game over window
+		 *GUI.Label(new Rect(currentGameOver.x + 15f, currentGameOver.y + 50f,
+		 *
+		 *Draw our highscore within the game over window
+		 *GUI.Label(new Rect(currentGameOver.x + 15f, currentGameOver.y + 70f,
+		 *
+		 *Draw a replay button and check if it was clicked
+		 *if(GUI.Button(new Rect(currentGameOver.x + (currentGameOver.width - 150)
+		 *{
+		 *	Application.LoadLevel("Level");
+		 *	Load the highscore from our save file
+		 *	highscore = PlayerPrefs.GetInt("Highscore");
+		 *}
+		*/
 	}
 
 	public void AddScore (int y)
