@@ -19,7 +19,7 @@ public class Roues : MonoBehaviour {
 		if (other.relativeVelocity.magnitude > 3) {
 
 			//ligne qui le fait exploser
-			SpecialEffectsHelper.Instance.Explosionplayer(this.gameObject.transform.position);
+			Explosion_roue.Instance.Explosion(this.gameObject.transform.position);
 			player.isDead = true;
 			Destroy (this);
 		}

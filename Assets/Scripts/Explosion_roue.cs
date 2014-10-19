@@ -1,28 +1,24 @@
 ﻿using UnityEngine;
 
-public class SpecialEffectsHelper : MonoBehaviour
+public class Explosion_roue : MonoBehaviour
 {
-
-	public static SpecialEffectsHelper Instance;
+	public static Explosion_roue Instance;
 	
-	public ParticleSystem Explosion;
+	public ParticleSystem explosion_roue;
 	
 	void Awake()
 	{
 		if (Instance != null)
 		{
-			Debug.LogError("Multiple instances of SpecialEffectsHelper!");
+			Debug.LogError("Multiple instances of Explosion_roue!");
 		}
 		
 		Instance = this;
 	}
 
-	public void Explosionplayer(Vector3 position)
-	{	
-
-		// Explosion pas initialisé
-		instantiate(Explosion, position);
-
+	public void Explosion(Vector3 position)
+	{
+		instantiate(explosion_roue, position);
 	}
 
 	private ParticleSystem instantiate(ParticleSystem prefab, Vector3 position)
@@ -32,8 +28,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 			position,
 			Quaternion.identity
 			) as ParticleSystem;
-		
-		// Destruction programmée
+
 		Destroy(
 			newParticleSystem.gameObject,
 			newParticleSystem.startLifetime
