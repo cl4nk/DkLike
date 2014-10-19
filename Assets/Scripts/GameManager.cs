@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public GUIText scoreGUIText;
 	public GUISkin skin;
 	public Texture image;
+	public Vector2 losePromptWH;
 
 	private Gyroscope gyo1;
 	private bool gyoBool;
@@ -53,15 +54,15 @@ public class GameManager : MonoBehaviour {
 		//scoreGUIText.text = curScore.ToString();
 
 		// If the bird died and our current score is greater than our saved highscore
-		if (showGameOver) {
-			transform.parent.gameObject.AddComponent<GameOverScript>();
-						if (curScore > highscore) {
-								// Set the highscore to our current score
-								highscore = curScore;
-								// Now save the score as our new highscore
-								PlayerPrefs.SetInt ("Highscore", highscore);
-						}
-				}
+		if (showGameOver && curScore > highscore)
+		{
+		//	transform.parent.gameObject.AddComponent<GameOverScript>();
+		 // Set the highscore to our current score
+			highscore = curScore;
+	     // Now save the score as our new highscore
+			PlayerPrefs.SetInt ("Highscore", highscore);
+
+		}
 	}
 
 
@@ -69,26 +70,29 @@ public class GameManager : MonoBehaviour {
 	{	
 		//Faire le skin avant de décommenter cette ligne
 		//GUI.skin = skin;
+		GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
+		
+		if (showGameOver) {
+			//define the screen space for the game over window
+			Rect currentGameOver = new Rect (Screen.width / 2 - (losePromptWH.x/2), Screen.height / 2 - (losePromptWH.y/2), losePromptWH.x, losePromptWH.y);
+			// Generate a box based on the game over window rectangle
+			GUI.Box (currentGameOver, "Game Over", skin.GetStyle ("Game Over"));
 
-		//GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString ());
-		//Rect currentGameOver = 
-		/*
-		 *GUI.Box(currentGameOver, "Game Over", skin.GetStyle("Game Over"));
-		 *
-		 *Draw our current score within the game over window
-		 *GUI.Label(new Rect(currentGameOver.x + 15f, currentGameOver.y + 50f,
-		 *
-		 *Draw our highscore within the game over window
-		 *GUI.Label(new Rect(currentGameOver.x + 15f, currentGameOver.y + 70f,
-		 *
-		 *Draw a replay button and check if it was clicked
-		 *if(GUI.Button(new Rect(currentGameOver.x + (currentGameOver.width - 150)
-		 *{
-		 *	Application.LoadLevel("Level");
-		 *	Load the highscore from our save file
-		 *	highscore = PlayerPrefs.GetInt("Highscore");
-		 *}
-		*/
+			//Draw our current score within the game over window
+			GUI.Label (new Rect (currentGameOver.x + 15f, currentGameOver.y + 50f, currentGameOver.width * 0.5f, currentGameOver.height * 0.25f),"Score : " + curScore.ToString());
+		
+			//Draw our highscore within the game over window
+			GUI.Label (new Rect (currentGameOver.x + 15f, currentGameOver.y + 70f, currentGameOver.width * 0.5f, currentGameOver.height * 0.25f),"Highscore : " + highscore.ToString());
+		
+			//Draw a replay button and check if it was clicked
+			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 150), currentGameOver.y +(currentGameOver.height -150),currentGameOver.x,currentGameOver.y),"Rejouer"))
+			{
+				Application.LoadLevel ("Level");
+				//	Load the highscore from our save file
+				highscore = PlayerPrefs.GetInt ("Highscore");
+			}
+
+		}
 	}
 
 	public void AddScore (int y)

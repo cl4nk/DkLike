@@ -18,7 +18,7 @@ public class GameOverScript : MonoBehaviour
 			Application.LoadLevel("Level");
 		}
 		
-		if (GUI.Button(new Rect(creen.width / 2 - (buttonWidth / 2),(2 * Screen.height / 3) - (buttonHeight / 2),
+		if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2),(2 * Screen.height / 3) - (buttonHeight / 2),
 			buttonWidth,buttonHeight),"Back to menu"))
 		{
 			// Reload the level
