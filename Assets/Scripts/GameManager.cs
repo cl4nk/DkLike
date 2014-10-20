@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour {
 	void OnGUI ()
 	{	
 		//Faire le skin avant de décommenter cette ligne
-		//GUI.skin = skin;
-		//GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
+		GUI.skin = skin;
+		GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
 		
 		if (showGameOver) {
 			//define the screen space for the game over window
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
 			GUI.Label (new Rect (currentGameOver.x + 15f, currentGameOver.y + 70f, currentGameOver.width * 0.5f, currentGameOver.height * 0.25f),"Highscore : " + highscore.ToString());
 		
 			//Draw a replay button and check if it was clicked
-			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 150), currentGameOver.y +(currentGameOver.height -150),currentGameOver.x,currentGameOver.y),"Rejouer"))
+			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 150), currentGameOver.y +(currentGameOver.height -150),currentGameOver.x -100, currentGameOver.y - 100),"Rejouer"))
 			{
 				Application.LoadLevel ("Level");
 				//	Load the highscore from our save file
