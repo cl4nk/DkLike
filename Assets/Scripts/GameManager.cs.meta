@@ -2,10 +2,7 @@ fileFormatVersion: 2
 guid: 184f444de93759a47b64ee578a59eafc
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - scoreGUIText: {instanceID: 0}
-  - skin: {instanceID: 0}
-  - image: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
