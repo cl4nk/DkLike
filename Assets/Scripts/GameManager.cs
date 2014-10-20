@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		curScore = 0;
 		highscore = PlayerPrefs.GetInt("Highscore");
-
+	//	skin = Resources.Load("GUISkin") as GUISkin;
 		/*gyoBool = SystemInfo.supportsGyroscope;
 		
 		if( gyoBool ) {
@@ -69,27 +69,32 @@ public class GameManager : MonoBehaviour {
 	void OnGUI ()
 	{	
 		//Faire le skin avant de décommenter cette ligne
-		GUI.skin = skin;
-		GUI.Label (new Rect (Screen.width / 2 - 100, 10f, 200, 200), curScore.ToString (),skin.GetStyle("Score"));
+	//	GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 60),curScore.ToString(),skin.GetStyle("Score"));
 		
 		if (showGameOver) {
 			//define the screen space for the game over window
 			Rect currentGameOver = new Rect (Screen.width / 2 - (losePromptWH.x/2), Screen.height / 2 - (losePromptWH.y/2), losePromptWH.x, losePromptWH.y);
 			// Generate a box based on the game over window rectangle
-			GUI.Box (currentGameOver, "Game Over", skin.GetStyle ("Game Over"));
+			//GUI.Box (currentGameOver, "Game Over", skin.GetStyle ("Game Over"));
+			GUI.Box(new Rect(70 ,200,300,200), "Game Over");
+
 
 			//Draw our current score within the game over window
-			GUI.Label (new Rect (currentGameOver.x + 15f, currentGameOver.y + 50f, currentGameOver.width * 0.5f, currentGameOver.height * 0.25f),"Score : " + curScore.ToString());
+			GUI.Label (new Rect (Screen.width / 2 - 90, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Score : " + curScore.ToString());
 		
 			//Draw our highscore within the game over window
-			GUI.Label (new Rect (currentGameOver.x + 15f, currentGameOver.y + 70f, currentGameOver.width * 0.5f, currentGameOver.height * 0.25f),"Highscore : " + highscore.ToString());
+			GUI.Label (new Rect (Screen.width / 2 + 60, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Highscore : " + highscore.ToString());
 		
 			//Draw a replay button and check if it was clicked
-			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 150), currentGameOver.y +(currentGameOver.height -150),currentGameOver.x -100, currentGameOver.y - 100),"Rejouer"))
+			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 25), currentGameOver.y +(currentGameOver.height - 100),currentGameOver.x -105, currentGameOver.y - 300),"Rejouer"))
 			{
 				Application.LoadLevel ("Level");
 				//	Load the highscore from our save file
 				highscore = PlayerPrefs.GetInt ("Highscore");
+			}
+			if(GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 25), currentGameOver.y +(currentGameOver.height - 25),currentGameOver.x - 105, currentGameOver.y - 300),"Menu"))
+			{
+				Application.LoadLevel("menudujeu");
 			}
 
 		}
