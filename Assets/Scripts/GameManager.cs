@@ -69,7 +69,8 @@ public class GameManager : MonoBehaviour {
 	{	
 		//Faire le skin avant de décommenter cette ligne
 	//	GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 60),curScore.ToString(),skin.GetStyle("Score"));
-		
+		Rect buttonrect = new Rect(Screen.width/2 - 25, Screen.height/2 - 25,Screen.width/2 - 105, Screen.height/2 - 300);
+		Rect button2rect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 100, Screen.width / 2 - 105, Screen.height / 2 - 300);
 		if (showGameOver) {
 			//define the screen space for the game over window
 			Rect currentGameOver = new Rect (Screen.width / 2 - (losePromptWH.x/2), Screen.height / 2 - (losePromptWH.y/2), losePromptWH.x, losePromptWH.y);
@@ -85,13 +86,13 @@ public class GameManager : MonoBehaviour {
 			GUI.Label (new Rect (Screen.width / 2 + 60, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Highscore : " + highscore.ToString());
 		
 			//Draw a replay button and check if it was clicked
-			if (GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 25), currentGameOver.y +(currentGameOver.height - 100),currentGameOver.x -105, currentGameOver.y - 300),"Rejouer"))
+			if (GUI.Button (button2rect,"Rejouer"))
 			{
 				Application.LoadLevel ("Level");
 				//	Load the highscore from our save file
 				highscore = PlayerPrefs.GetInt ("Highscore");
 			}
-			if(GUI.Button (new Rect(currentGameOver.x +(currentGameOver.width - 25), currentGameOver.y +(currentGameOver.height - 25),currentGameOver.x - 105, currentGameOver.y - 300),"Menu"))
+			if(GUI.Button (buttonrect,"Menu"))
 			{
 				Application.LoadLevel("menudujeu");
 			}
