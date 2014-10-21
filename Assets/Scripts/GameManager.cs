@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool showGameOver = false;
-	private bool isPaused = false;
 	
 	public GUIText scoreGUIText;
 	public GUISkin skin;

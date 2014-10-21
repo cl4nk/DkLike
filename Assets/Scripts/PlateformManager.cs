@@ -7,7 +7,6 @@ public class PlateformManager : MonoBehaviour
 		private Vector3 startPosition ;
 		public float gap = 1f;
 		private Vector3 nextPosition ;
-		public GameObject[] objects;
 
 		public GameObject[] bigObjects;
 			public float bigMargin = 25f;

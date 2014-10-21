@@ -16,7 +16,7 @@ public class Roues : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.relativeVelocity.magnitude > 3) {
+		if (other.relativeVelocity.magnitude > 6) {
 
 			gameObject.SetActive(false);
 			//ligne qui le fait exploser
