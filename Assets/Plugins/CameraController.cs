@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour {
 		float yCamera = transform.position.y;
 		distance =  yCamera - yPlayer;
 		lockedX = transform.position.x;
-		maxY = transform.position.y;
+		maxY = Mathf.Abs(transform.position.y);
 
 
 	}
@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 		Vector3 mPosition = transform.position;
 		mPosition.x = lockedX;
-		if (transform.position.y < maxY)
+		//if (Mathf.Abs(transform.position.y) > maxY)
 			mPosition.y = distance + player.gameObject.transform.position.y;
 		transform.position = mPosition;
 
