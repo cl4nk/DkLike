@@ -67,17 +67,22 @@ public class GameManager : MonoBehaviour {
 
 	void OnGUI ()
 	{	
+		const int buttonWidth = 84;
+		const int buttonHeight = 60;
+
 		//Faire le skin avant de décommenter cette ligne
 	//	GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 60),curScore.ToString(),skin.GetStyle("Score"));
-		Rect buttonrect = new Rect(Screen.width/2 - 25, Screen.height/2 - 25,Screen.width/2 - 105, Screen.height/2 - 300);
-		Rect button2rect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 100, Screen.width / 2 - 105, Screen.height / 2 - 300);
+
+		Rect buttonrect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 25, buttonWidth - 5, buttonHeight - 5);//Screen.width/2 - 105, Screen.height/2 - 300);
+		Rect button2rect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 100, buttonWidth - 5, buttonHeight - 5);//Screen.width / 2 - 105, Screen.height / 2 - 300);
+		Rect boxrect = new Rect (Screen.width / 2 - 110, Screen.height / 2 - 160, Screen.width /2 + 60, Screen.height/3);
 		if (showGameOver) {
 			//define the screen space for the game over window
 			Rect currentGameOver = new Rect (Screen.width / 2 - (losePromptWH.x/2), Screen.height / 2 - (losePromptWH.y/2), losePromptWH.x, losePromptWH.y);
 			// Generate a box based on the game over window rectangle
 			//GUI.Box (currentGameOver, "Game Over", skin.GetStyle ("Game Over"));
-			GUI.Box(new Rect(70 ,200,300,200), "Game Over");
-
+			//GUI.Box(new Rect(70 ,200,300,200), "Game Over");
+			GUI.Box(boxrect,"Game Over");
 
 			//Draw our current score within the game over window
 			GUI.Label (new Rect (Screen.width / 2 - 90, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Score : " + curScore.ToString());
