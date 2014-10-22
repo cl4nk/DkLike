@@ -20,6 +20,9 @@ public class PlateformManager : MonoBehaviour
 		public GameObject[] mediumsObjects;
 			public float mediumMargin = 12f;
 
+		public GameObject loopingObject;
+			public float loopingMargin = 15f;	
+
 		private List<GameObject> currentObjects = new List<GameObject> ();
 
 		void Start ()
@@ -66,6 +69,10 @@ public class PlateformManager : MonoBehaviour
 		private bool CreateObstacle ()
 		{
 				int sizeChoice = Random.Range (0, 10);
+				int looping_choice = Random.Range (0, 2);
+
+				if (sizeChoice == 6 && looping_choice == 1)
+					return CreateLoopingObstacle ();
 				
 				if (sizeChoice > 5)
 						return CreateVerySmallObstacle ();
@@ -75,6 +82,7 @@ public class PlateformManager : MonoBehaviour
 						return CreateBigObstacle ();
 				else 
 						return CreateMediumObstacle ();
+				
 				
 		}
 
@@ -186,10 +194,37 @@ public class PlateformManager : MonoBehaviour
 		Debug.Log ("Pas rentré dans le if");
 		return false;
 	}
+
+	private bool CreateLoopingObstacle ()
+	{
+		//int enemyIndex = loopingObject;
+		
+		if (loopingObject != null) {
+			
+			GameObject newObstacle = loopingObject;
+			
+			nextPosition.y -= loopingMargin / 2;
+			
+			Vector3 currentPos = newObstacle.transform.position;
+			currentPos.y = nextPosition.y;
+			newObstacle.transform.position = currentPos;
+			
+			currentObjects.Add ((GameObject)Instantiate (newObstacle));
+			
+			nextPosition.y -= gap + (loopingMargin / 2f);
+			
+			return objectIsVisible (loopingObject);
+		}
+		if (loopingObject == null) 
+			Debug.Log ("Mauvais index");
+		
+		Debug.Log ("Pas rentré dans le if");
+		return false;
+	}
 	
 		private float getHeight (GameObject parent)
 		{
-				float top = -9999f, bottom = 9999f, hieght;
+				float top = -9999f, bottom = 9999f, height;
 				Transform transTop = null, transBottom = null;
 		
 				foreach (Transform child in parent.transform) {
