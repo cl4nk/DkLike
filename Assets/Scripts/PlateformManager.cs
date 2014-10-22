@@ -71,6 +71,7 @@ public class PlateformManager : MonoBehaviour
 				int sizeChoice = Random.Range (0, 10);
 				int looping_choice = Random.Range (0, 2);
 
+
 				if (sizeChoice == 6 && looping_choice == 1)
 					return CreateLoopingObstacle ();
 				
