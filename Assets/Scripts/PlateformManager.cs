@@ -225,7 +225,7 @@ public class PlateformManager : MonoBehaviour
 	
 		private float getHeight (GameObject parent)
 		{
-				float top = -9999f, bottom = 9999f, height;
+				float top = -9999f, bottom = 9999f;
 				Transform transTop = null, transBottom = null;
 		
 				foreach (Transform child in parent.transform) {

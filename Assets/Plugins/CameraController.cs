@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
 	private float distance;
 
 	private float lockedX ;
-	private float maxY;
+//	private float maxY;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour {
 		float yCamera = transform.position.y;
 		distance =  yCamera - yPlayer;
 		lockedX = transform.position.x;
-		maxY = Mathf.Abs(transform.position.y);
+	//	maxY = Mathf.Abs(transform.position.y);
 
 
 	}
