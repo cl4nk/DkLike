@@ -28,16 +28,19 @@ public class MenuPause : MonoBehaviour {
 
 	void OnGUI ()
 	{
+		Rect boxrect = new Rect (Screen.width / 2 - 125, Screen.height / 2 - 100, Screen.width /2 + 60, Screen.height/3);
+
 		if(isPaused)
 		{
-		
-			// Si le bouton est présser alors isPaused devient faux donc le jeu reprend.
+
+			GUI.Box(boxrect,"Pause ");
+			// Si le bouton est préssé alors isPaused devient faux donc le jeu reprend.
 			if(GUI.Button(new Rect(Screen.width / 2 - 40, Screen.height / 2 - 20, 80, 40), "Continuer"))
 			{
 				isPaused = false;
 			}
 
-			// Si le bouton est présse alors on ferme completement le jeu ou charge la scene "Menu Principal
+			// Si le bouton est préssé alors on ferme completement le jeu ou charge la scene "Menu Principal
 			// Dans le cas du bouton quitter il faut augmenter sa postion Y pour qu'il soit plus bas
 			if(GUI.Button(new Rect(Screen.width / 2 - 40, Screen.height / 2 + 40, 80, 40), "menu"))
 			{
