@@ -53,6 +53,6 @@ public class PlateformScript : MonoBehaviour {
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color (1.0f, 0.0f, 0.0f, 0.5f);
-        Gizmos.DrawCube(new Vector3(0, transform.position.y + (top - bottom) / 2, 0), new Vector3(20, top + bottom, 1));
+        Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + (top - bottom) / 2, 0), new Vector3(20, top + bottom, 1));
     }
 }
