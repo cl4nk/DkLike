@@ -21,10 +21,10 @@ public class ScriptScrolling : MonoBehaviour
 		{
 				background = GameObject.FindGameObjectWithTag ("Background");
 				// Only visible children
-				if (background.renderer != null) {
+				if (background.GetComponent<Renderer>() != null) {
 
 						backgroundList.Add (background);
-						sizeY = background.renderer.bounds.size.y;
+						sizeY = background.GetComponent<Renderer>().bounds.size.y;
 						nextPosition = background.transform.position;
 						lockedX = nextPosition.x;
 						AddBackground ();

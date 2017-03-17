@@ -1,115 +1,128 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	[HideInInspector]
-	public int curScore; 
-	// The highest score the player has reached (saved)
-	private int highscore;
-	
-	[HideInInspector]
-	public bool showGameOver = false;
-	
-	public GUIText scoreGUIText;
-	public GUISkin skin;
-	public Texture image;
-	public Vector2 losePromptWH;
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameManager>();
+            }
+            return instance;
+        }
+    }
 
-	private Gyroscope gyo1;
-	private bool gyoBool;
+    public enum GameState
+    {
+        Play,
+        Pause,
+        GameOver
+    }
 
-	// Use this for initialization
-	void Start () {
-		curScore = 0;
-		highscore = PlayerPrefs.GetInt("Highscore");
-	//	skin = Resources.Load("GUISkin") as GUISkin;
-		/*gyoBool = SystemInfo.supportsGyroscope;
-		
-		if( gyoBool ) {
-			gyo1=Input.gyro;
-			gyo1.enabled = true;
-		}
-		Physics.gravity = gyo1.gravity;
-		Screen.orientation = ScreenOrientation.Portrait;*/
-	}
+    private int score;
+    public float Score
+    {
+        get { return score; }
+    }
+    private int bestScore;
+
+    private float currentTime = 0;
+    public float CurrentTime
+    {
+        get { return currentTime; }
+    }
+    private float startTime = 0;
+
+    private float startPosY;
+
+    public GameObject  playerPrefab;
+    private GameObject playerObj;
+    public GameObject PlayerObj
+    {
+        get
+        {
+            return playerObj;
+        }
+    }
+
+    [SerializeField]
+    private GameObject startPoint;
+
+    public delegate void StateDelegate();
+    public event StateDelegate OnPlay;
+    public event StateDelegate OnPause;
+    public event StateDelegate OnGameOver;
+
+    private GameState state = GameState.Pause;
+    public GameState State
+    {
+        get { return state; }
+        set
+        {
+            if (state == value)
+                return;
+            state = value;
+            switch (state)
+            {
+                case GameState.Play:
+                    Time.timeScale = 1;
+                    if (OnPlay != null)
+                        OnPlay();
+                    return;
+                case GameState.Pause:
+                    Time.timeScale = 0;
+                    if (OnPause != null)
+                        OnPause();
+                    return;
+                case GameState.GameOver:
+                    if (OnGameOver != null)
+                        OnGameOver();
+                    return;
+                default:
+                    return;
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        playerObj = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+        score = 0;
+        startTime = Time.time;
+    }
 	
 	// Update is called once per frame
-	void Update () 
-	{
+	void Update ()
+    {
+        currentTime = Time.time - startTime;
+        score = Mathf.Max((int) (startPosY - playerObj.transform.position.y), score);
+    }
 
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            Pause();
+        else
+            Play();
+    }
 
-		//Physics.gravity = gyo1.gravity;
+    public void Pause ()
+    {
+        state = GameState.Pause;
+    }
 
-
-		/*
-		if(isPaused)
-			Time.timeScale = 0f; // Le temps s'arrete	
-		
-		else
-			Time.timeScale = 1.0f; // Le temps reprend*/
-
-		//AddScore ((int) player.transform.position.y);
-		//scoreGUIText.text = curScore.ToString();
-
-		// If the bird died and our current score is greater than our saved highscore
-		if (showGameOver && curScore > highscore)
-		{
-		//	transform.parent.gameObject.AddComponent<GameOverScript>();
-		 // Set the highscore to our current score
-			highscore = curScore;
-	     // Now save the score as our new highscore
-			PlayerPrefs.SetInt ("Highscore", highscore);
-
-		}
-	}
-
-
-	void OnGUI ()
-	{	
-		const int buttonWidth = 84;
-		const int buttonHeight = 60;
-
-		//Faire le skin avant de décommenter cette ligne
-	//	GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 60),curScore.ToString(),skin.GetStyle("Score"));
-
-		Rect buttonrect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 25, buttonWidth - 5, buttonHeight - 5);//Screen.width/2 - 105, Screen.height/2 - 300);
-		Rect button2rect = new Rect (Screen.width / 2 - 25, Screen.height / 2 - 100, buttonWidth - 5, buttonHeight - 5);//Screen.width / 2 - 105, Screen.height / 2 - 300);
-		Rect boxrect = new Rect (Screen.width / 2 - 110, Screen.height / 2 - 160, Screen.width /2 + 60, Screen.height/3);
-		if (showGameOver) {
-			//define the screen space for the game over window
-			Rect currentGameOver = new Rect (Screen.width / 2 - (losePromptWH.x/2), Screen.height / 2 - (losePromptWH.y/2), losePromptWH.x, losePromptWH.y);
-			// Generate a box based on the game over window rectangle
-			//GUI.Box (currentGameOver, "Game Over", skin.GetStyle ("Game Over"));
-			//GUI.Box(new Rect(70 ,200,300,200), "Game Over");
-			GUI.Box(boxrect,"Game Over");
-
-			//Draw our current score within the game over window
-			GUI.Label (new Rect (Screen.width / 2 - 90, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Score : " + curScore.ToString());
-		
-			//Draw our highscore within the game over window
-			GUI.Label (new Rect (Screen.width / 2 + 60, Screen.height / 2 - 50, currentGameOver.x, currentGameOver.y),"Highscore : " + highscore.ToString());
-		
-			//Draw a replay button and check if it was clicked
-			if (GUI.Button (button2rect,"Rejouer"))
-			{
-				Application.LoadLevel ("Level");
-				//	Load the highscore from our save file
-				highscore = PlayerPrefs.GetInt ("Highscore");
-			}
-			if(GUI.Button (buttonrect,"Menu"))
-			{
-				Application.LoadLevel("menudujeu");
-			}
-
-		}
-	}
-
-	public void AddScore (int y)
-	{
-		y  = y > 0 ? y : -y;
-		if ( y > curScore)
-			curScore = y;
-	}
-
+    public void Play()
+    {
+        state = GameState.Play;
+    }
 }
