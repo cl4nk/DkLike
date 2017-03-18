@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour {
 
     private float startPosY;
 
-    public GameObject  playerPrefab;
+    [SerializeField]
+    private GameObject  playerPrefab;
     private GameObject playerObj;
     public GameObject PlayerObj
     {
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour {
     {
         score = 0;
         startTime = Time.time;
+        startPosY = startPoint.transform.position.y;
     }
 	
 	// Update is called once per frame
