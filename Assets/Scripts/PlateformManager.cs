@@ -83,7 +83,7 @@ public class PlateformManager : MonoBehaviour
         position = currentObjects.Count == 0 ?
             startPoint.transform.position : currentObjects[currentObjects.Count - 1].GetBottomPoint();
         position.x = fixedX;
-        position.y -= plateformPrefabs[index].Bottom;
+        position.y -= plateformPrefabs[index].Top;
 
         PlateformScript plateform = Instantiate(plateformPrefabs[index], position, plateformPrefabs[index].transform.rotation);
         currentObjects.Add(plateform);
