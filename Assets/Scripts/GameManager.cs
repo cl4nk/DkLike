@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour {
     {
         currentTime = Time.time - startTime;
         score = Mathf.Max((int) (startPosY - playerObj.transform.position.y), score);
+        if (SystemInfo.supportsGyroscope)
+            Physics2D.gravity = Input.gyro.gravity;
     }
 
     private void OnApplicationPause(bool pause)

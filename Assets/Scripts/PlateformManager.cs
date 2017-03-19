@@ -24,6 +24,7 @@ public class PlateformManager : MonoBehaviour
     [SerializeField]
     private PlateformScript[] plateformPrefabs;
 	private List<PlateformScript> currentObjects = new List<PlateformScript> ();
+    private float width = 0;
     #endregion
 
     #region Scrolling Background Fields
@@ -35,10 +36,26 @@ public class PlateformManager : MonoBehaviour
 
     private Camera mainCamera;
 
-    void Start ()
-	{
+    void Awake ()
+    {
         mainCamera = Camera.main;
 
+        for (int i = 0; i < plateformPrefabs.Length; ++i)
+        {
+            if (plateformPrefabs[i].Width > width)
+                width = plateformPrefabs[i].Width;
+        }
+
+        float a = mainCamera.ViewportToWorldPoint(new Vector3(0.0F, 0.0F, -mainCamera.transform.position.z)).x;
+        float b = mainCamera.ViewportToWorldPoint(new Vector3(1.0f, 0.0F, -mainCamera.transform.position.z)).x;
+        float x1 = b - a;
+
+        mainCamera.orthographicSize = mainCamera.orthographicSize * (width / x1);
+
+    }
+
+    void Start ()
+	{
         CreateObstacle(0);
 
         while (!IsScreenFilled())

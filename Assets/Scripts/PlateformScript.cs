@@ -21,6 +21,13 @@ public class PlateformScript : MonoBehaviour {
     [SerializeField]
     private float gizmosSphereRadius = 0.2f;
 
+    [SerializeField]
+    private float width = 15.0f;
+    public float Width
+    {
+        get { return width; }
+    }
+
     public Vector3 GetBottomPoint()
     {
         Vector3 result = transform.position;
@@ -38,8 +45,8 @@ public class PlateformScript : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        float x1 = transform.position.x - 10;
-        float x2 = transform.position.x + 10;
+        float x1 = transform.position.x - (width / 2);
+        float x2 = transform.position.x + (width / 2);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(x1, transform.position.y + top, 0), new Vector3(x2, transform.position.y + top, 0));
         Gizmos.DrawSphere(GetTopPoint(), gizmosSphereRadius);
@@ -53,6 +60,6 @@ public class PlateformScript : MonoBehaviour {
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color (1.0f, 0.0f, 0.0f, 0.5f);
-        Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + (top - bottom) / 2, 0), new Vector3(20, top + bottom, 1));
+        Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + (top - bottom) / 2, 0), new Vector3(width, top + bottom, 1));
     }
 }
