@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour {
     {
         Play,
         Pause,
-        GameOver
+        GameOver,
+        None
     }
 
     private int score;
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour {
     public event StateDelegate OnPause;
     public event StateDelegate OnGameOver;
 
-    private GameState state = GameState.Pause;
+    private GameState state = GameState.None;
     public GameState State
     {
         get { return state; }
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour {
         score = 0;
         startTime = Time.time;
         startPosY = startPoint.transform.position.y;
+        State = GameState.Play;
     }
 	
 	// Update is called once per frame
@@ -120,11 +123,21 @@ public class GameManager : MonoBehaviour {
 
     public void Pause ()
     {
-        state = GameState.Pause;
+        State = GameState.Pause;
     }
 
     public void Play()
     {
-        state = GameState.Play;
+        State = GameState.Play;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

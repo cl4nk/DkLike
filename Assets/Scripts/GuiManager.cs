@@ -5,28 +5,37 @@ using UnityEngine.UI;
 
 public class GuiManager : MonoBehaviour {
 
+    [SerializeField]
     private Text timeLabel;
+    [SerializeField]
     private Text scoreLabel;
 
-    public GameObject menuObject;
-    public GameObject gameOverObject;
+    [SerializeField]
+    private GameObject hudObject;
+    [SerializeField]
+    private GameObject menuObject;
+    [SerializeField]
+    private GameObject gameOverObject;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         GameManager.Instance.OnPlay += () =>
         {
+            hudObject.SetActive(true);
             menuObject.SetActive(false);
             gameOverObject.SetActive(false);
         };
 
         GameManager.Instance.OnPause += () =>
         {
+            hudObject.SetActive(false);
             menuObject.SetActive(true);
             gameOverObject.SetActive(false);
         };
 
         GameManager.Instance.OnGameOver += () =>
         {
+            hudObject.SetActive(false);
             menuObject.SetActive(false);
             gameOverObject.SetActive(true);
         };
@@ -34,7 +43,7 @@ public class GuiManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeLabel.text = GameManager.Instance.CurrentTime.ToString("0:00");
-        scoreLabel.text = GameManager.Instance.Score.ToString();
+        timeLabel.text = "Time :" +  GameManager.Instance.CurrentTime.ToString("0.00");
+        scoreLabel.text = "Score :" + GameManager.Instance.Score.ToString();
     }
 }
