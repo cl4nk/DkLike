@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour {
     private float startPosY;
 
     [SerializeField]
-    private GameObject  playerPrefab;
-    private GameObject playerObj;
-    public GameObject PlayerObj
+    private PlayerScript  playerPrefab;
+    private PlayerScript playerObj;
+    public PlayerScript PlayerObj
     {
         get
         {
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour {
     private GameObject startPoint;
 
     public delegate void StateDelegate();
-    public event StateDelegate OnPlay;
+    public event StateDelegate OnStart;
+    public event StateDelegate OnResume;
     public event StateDelegate OnPause;
     public event StateDelegate OnGameOver;
 
@@ -74,8 +75,8 @@ public class GameManager : MonoBehaviour {
             {
                 case GameState.Play:
                     Time.timeScale = 1;
-                    if (OnPlay != null)
-                        OnPlay();
+                    if (OnResume != null)
+                        OnResume();
                     return;
                 case GameState.Pause:
                     Time.timeScale = 0;
@@ -95,6 +96,10 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         playerObj = Instantiate(playerPrefab, startPoint.transform.position, startPoint.transform.rotation);
+        playerObj.OnDeath += () =>
+        {
+            State = GameState.GameOver;
+        };
     }
 
     // Use this for initialization
@@ -120,7 +125,7 @@ public class GameManager : MonoBehaviour {
         if (pause)
             Pause();
         else
-            Play();
+            Resume();
     }
 
     public void Pause ()
@@ -128,8 +133,15 @@ public class GameManager : MonoBehaviour {
         State = GameState.Pause;
     }
 
-    public void Play()
+    public void Resume()
     {
+        State = GameState.Play;
+    }
+
+    public void StartGame()
+    {
+        if (OnStart != null)
+            OnStart();
         State = GameState.Play;
     }
 

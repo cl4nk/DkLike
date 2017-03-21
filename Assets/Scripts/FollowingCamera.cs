@@ -12,7 +12,7 @@ public class FollowingCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        target = GameManager.Instance.PlayerObj;
+        target = GameManager.Instance.PlayerObj.gameObject;
         
         fixedX = PlateformManager.Instance.fixedX;
 

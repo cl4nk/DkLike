@@ -19,7 +19,14 @@ public class GuiManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        GameManager.Instance.OnPlay += () =>
+        GameManager.Instance.OnStart += () =>
+        {
+            hudObject.SetActive(true);
+            menuObject.SetActive(false);
+            gameOverObject.SetActive(false);
+        };
+
+        GameManager.Instance.OnResume += () =>
         {
             hudObject.SetActive(true);
             menuObject.SetActive(false);
