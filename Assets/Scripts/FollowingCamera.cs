@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FollowingCamera : MonoBehaviour {
 
-    private GameObject target;
     [Range(0.0f, 1.0f)]
     public float distanceRatio = 0.3f;
     public float distanceY = -2.0f;
@@ -12,7 +11,6 @@ public class FollowingCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        target = GameManager.Instance.PlayerObj.gameObject;
         
         fixedX = PlateformManager.Instance.fixedX;
 
@@ -26,7 +24,7 @@ public class FollowingCamera : MonoBehaviour {
 	void Update () {
         Vector3 mPosition = transform.position;
         mPosition.x = fixedX;
-        mPosition.y = distanceY + target.transform.position.y;
+        mPosition.y = distanceY + GameManager.Instance.PlayerPos.y;
 
         transform.position = Vector3.Lerp(transform.position, mPosition, Time.deltaTime);
     }

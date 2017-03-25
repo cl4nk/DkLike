@@ -23,35 +23,52 @@ public class PlateformManager : MonoBehaviour
     private GameObject startPoint;
     [SerializeField]
     private PlateformScript[] plateformPrefabs;
-	private List<PlateformScript> currentObjects = new List<PlateformScript> ();
+	private readonly List<PlateformScript> currentObjects = new List<PlateformScript> ();
     private float width = 0;
     #endregion
 
     #region Scrolling Background Fields
-    private List<GameObject> backgroundList = new List<GameObject>();
+    private readonly List<GameObject> backgroundList = new List<GameObject>();
     [SerializeField]
     private GameObject backgroundPrefab;
     private float backgroundSizeY;
     #endregion
 
+    private readonly List<PairObject> wallList = new List<PairObject>();
+    [SerializeField]
+    private GameObject wallPrefab;
+    private Vector2 wallSize;
+
     private Camera mainCamera;
+
+    private float leftSide;
+    private float rightSide;
 
     void Awake ()
     {
         mainCamera = Camera.main;
 
+        backgroundSizeY = backgroundPrefab.GetComponent<Renderer>().bounds.size.y;
+        wallSize = wallPrefab.GetComponent<Renderer>().bounds.size;
+
+        float wallsWidth = wallSize.x * 2;
+
         for (int i = 0; i < plateformPrefabs.Length; ++i)
         {
-            if (plateformPrefabs[i].Width > width)
-                width = plateformPrefabs[i].Width;
+            if (plateformPrefabs[i].Width + wallsWidth > width + wallsWidth)
+                width = plateformPrefabs[i].Width + wallsWidth;
         }
+
+        fixedX = startPoint.transform.position.x;
+
+        leftSide = fixedX - width / 2;
+        rightSide = fixedX + width / 2;
 
         float a = mainCamera.ViewportToWorldPoint(new Vector3(0.0F, 0.0F, -mainCamera.transform.position.z)).x;
         float b = mainCamera.ViewportToWorldPoint(new Vector3(1.0f, 0.0F, -mainCamera.transform.position.z)).x;
         float x1 = b - a;
 
         mainCamera.orthographicSize = mainCamera.orthographicSize * (width / x1);
-
     }
 
     void Start ()
@@ -61,24 +78,26 @@ public class PlateformManager : MonoBehaviour
         while (!IsScreenFilled())
             CreateObstacle();
 
-        backgroundSizeY = backgroundPrefab.GetComponent<Renderer>().bounds.size.y;
-
         while (!IsBackgroundFilled())
             CreateBackgroud();
+
+        while (!IsWallsFilled())
+            CreateWalls();
     }
 	
 	void Update ()
 	{
         if (!IsScreenFilled())
             CreateObstacle();
-		if (currentObjects.Count > 0) {
-            if (IsGone(currentObjects[0]))
-            {
-                Destroy(currentObjects[0]);
-                currentObjects.RemoveAt(0);
-            }
-		}
-	}
+        if (!IsBackgroundFilled())
+            CreateBackgroud();
+        if (!IsWallsFilled())
+            CreateWalls();
+        RemoveFirstPlateform();
+	    RemoveFirstBackground();
+        RemoveFirstPairWall();
+
+    }
 
     void CreateBackgroud ()
     {
@@ -92,7 +111,25 @@ public class PlateformManager : MonoBehaviour
         backgroundList.Add(obj);
     }
 
-	private void CreateObstacle (int index = -1)
+    void CreateWalls()
+    {
+        Vector3 position = wallList.Count == 0 ? Vector3.zero : wallList[wallList.Count - 1].first.transform.position;
+        position.x = fixedX;
+        if (wallList.Count > 0)
+            position.y -= wallSize.y;
+        GameObject left = Instantiate(wallPrefab);
+        GameObject right = Instantiate(wallPrefab);
+        Vector3 posLeft = position;
+        Vector3 posRight = position;
+        posLeft.x = leftSide + wallSize.x / 2;
+        posRight.x = rightSide - wallSize.x / 2;
+        left.transform.position = posLeft;
+        right.transform.position = posRight;
+
+        wallList.Add(new PairObject(left, right));
+    }
+
+    private void CreateObstacle (int index = -1)
 	{
         if (index < 0)
 		    index = Random.Range (0, plateformPrefabs.Length);
@@ -109,10 +146,59 @@ public class PlateformManager : MonoBehaviour
             plateform.transform.eulerAngles = new Vector3(0, 180);
 	}
 
+    public void RemoveFirstBackground()
+    {
+        if (backgroundList.Count > 0)
+        {
+            if (IsBackgroundGone(backgroundList[0]))
+            {
+                Destroy(backgroundList[0]);
+                backgroundList.RemoveAt(0);
+            }
+        }
+    }
+
+    public void RemoveFirstPairWall()
+    {
+        if (wallList.Count > 0)
+        {
+            if (IsWallsGone(wallList[0]))
+            {
+                Destroy(wallList[0].first);
+                Destroy(wallList[0].second);
+                wallList.RemoveAt(0);
+            }
+        }
+    }
+
+    public void RemoveFirstPlateform()
+    {
+        if (currentObjects.Count > 0)
+        {
+            if (IsGone(currentObjects[0]))
+            {
+                Destroy(currentObjects[0]);
+                currentObjects.RemoveAt(0);
+            }
+        }
+    }
+
     private bool IsGone(PlateformScript plateform)
     {
         Vector3 screenTop = mainCamera.ViewportToWorldPoint(new Vector3(0.5F, 1.0F, -mainCamera.transform.position.z));
         return screenTop.y < plateform.GetBottomPoint().y;
+    }
+
+    private bool IsBackgroundGone(GameObject background)
+    {
+        Vector3 screenTop = mainCamera.ViewportToWorldPoint(new Vector3(0.5F, 1.0F, -mainCamera.transform.position.z));
+        return screenTop.y < background.transform.position.y  - backgroundSizeY / 2;
+    }
+
+    private bool IsWallsGone(PairObject pairWall)
+    {
+        Vector3 screenTop = mainCamera.ViewportToWorldPoint(new Vector3(0.5F, 1.0F, -mainCamera.transform.position.z));
+        return screenTop.y < pairWall.first.transform.position.y - wallSize.y / 2;
     }
 
     private bool IsScreenFilled ()
@@ -131,5 +217,24 @@ public class PlateformManager : MonoBehaviour
         return backgroundList[backgroundList.Count - 1].transform.position.y - (backgroundSizeY /2) < screenBottom.y;
     }
 
+    private bool IsWallsFilled()
+    {
+        if (wallList.Count == 0)
+            return false;
+        Vector3 screenBottom = mainCamera.ViewportToWorldPoint(new Vector3(0.5F, 0.0F, -mainCamera.transform.position.z));
+        return wallList[wallList.Count - 1].first.transform.position.y - (wallSize.y / 2) < screenBottom.y;
+    }
 
+    class PairObject
+    {
+        public GameObject first;
+        public GameObject second;
+
+        public PairObject(GameObject first, GameObject second)
+        {
+            this.first = first;
+            this.second = second;
+        }
+
+    }
 }

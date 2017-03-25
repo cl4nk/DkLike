@@ -38,23 +38,24 @@ public class GameManager : MonoBehaviour {
     {
         get { return currentTime; }
     }
-    private float startTime = 0;
 
     private float startPosY;
 
     [SerializeField]
     private PlayerScript  playerPrefab;
     private PlayerScript playerObj;
-    public PlayerScript PlayerObj
+    public Vector3 PlayerPos
     {
         get
         {
-            return playerObj;
+            return playerObj.RealPosition;
         }
     }
 
     [SerializeField]
     private GameObject startPoint;
+
+    public float gravity = 9.81f;
 
     public delegate void StateDelegate();
     public event StateDelegate OnStart;
@@ -75,6 +76,9 @@ public class GameManager : MonoBehaviour {
             {
                 case GameState.Play:
                     Time.timeScale = 1;
+                    score = 0;
+                    currentTime = 0;
+                    startPosY = startPoint.transform.position.y;
                     if (OnResume != null)
                         OnResume();
                     return;
@@ -105,19 +109,27 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        score = 0;
-        startTime = Time.time;
-        startPosY = startPoint.transform.position.y;
         State = GameState.Play;
     }
 	
 	// Update is called once per frame
 	void Update ()
+	{
+	    if (state != GameState.Play)
+	        return;
+        currentTime += Time.deltaTime;
+        score = Mathf.Max((int) (startPosY - playerObj.RealPosition.y), score);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        currentTime = Time.time - startTime;
-        score = Mathf.Max((int) (startPosY - playerObj.transform.position.y), score);
         if (SystemInfo.supportsGyroscope)
-            Physics2D.gravity = Input.gyro.gravity;
+        {
+            float gx = Input.acceleration.x * gravity;
+            float gy = Input.acceleration.y * gravity;
+            Physics2D.gravity = new Vector2(gx, gy);
+        }
     }
 
     private void OnApplicationPause(bool pause)
